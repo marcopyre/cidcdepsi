@@ -1,0 +1,69 @@
+@if(innerWidth > 1400) {
+<div class="computer">
+    <h1 class="title">OnlyVape</h1>
+
+    @if(!isLoggedin){
+    <div class="log">
+        <button (click)="login()" type="button" class="login-with-google-btn my-auto">
+            <p class="mb-4">Sign in with Google</p>
+        </button>
+    </div>
+    }@else {
+    <div class="log">
+        <button (click)="logout()" type="button" class="login-with-google-btn my-auto">
+            <p class="mb-4">Logout</p>
+        </button>
+    </div>
+    }
+
+</div>
+
+}
+
+@else {
+<div class="mobile">
+    <svg width="30px" height="30px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none"
+        (click)="toggleDrawer()">
+        <path class="fill-primary-950" fill-rule="evenodd"
+            d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z" />
+    </svg>
+    <h1 class="title">OnlyVape</h1>
+</div>
+@if(drawerOpened){
+<div class="sidenav" (click)="toggleDrawer()"></div>
+<div class="drawer shadow-2xl">
+    <div class="flex">
+        <div class="log">
+            <div class="login underline-anim">
+                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_3017_11682)">
+                        <path
+                            d="M6.5 6C7.29565 6 8.05871 5.68393 8.62132 5.12132C9.18393 4.55871 9.5 3.79565 9.5 3C9.5 2.20435 9.18393 1.44129 8.62132 0.87868C8.05871 0.316071 7.29565 0 6.5 0C5.70435 0 4.94129 0.316071 4.37868 0.87868C3.81607 1.44129 3.5 2.20435 3.5 3C3.5 3.79565 3.81607 4.55871 4.37868 5.12132C4.94129 5.68393 5.70435 6 6.5 6ZM8.5 3C8.5 3.53043 8.28929 4.03914 7.91421 4.41421C7.53914 4.78929 7.03043 5 6.5 5C5.96957 5 5.46086 4.78929 5.08579 4.41421C4.71071 4.03914 4.5 3.53043 4.5 3C4.5 2.46957 4.71071 1.96086 5.08579 1.58579C5.46086 1.21071 5.96957 1 6.5 1C7.03043 1 7.53914 1.21071 7.91421 1.58579C8.28929 1.96086 8.5 2.46957 8.5 3ZM12.5 11C12.5 12 11.5 12 11.5 12H1.5C1.5 12 0.5 12 0.5 11C0.5 10 1.5 7 6.5 7C11.5 7 12.5 10 12.5 11ZM11.5 10.996C11.499 10.75 11.346 10.01 10.668 9.332C10.016 8.68 8.789 8 6.5 8C4.21 8 2.984 8.68 2.332 9.332C1.654 10.01 1.502 10.75 1.5 10.996H11.5Z"
+                            class="fill-primary-950" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_3017_11682">
+                            <rect width="12" height="12" class="fill-primary-950" transform="translate(0.5)" />
+                        </clipPath>
+                    </defs>
+                </svg>
+                <p>Login</p>
+            </div>
+            <p>/</p>
+            <p class="register underline-anim ">Register</p>
+        </div>
+        <svg class="fill-primary-950 ml-[3.5rem]" width="20px" height="20px" viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg" (click)="toggleDrawer()">
+            <path
+                d="M18.8,16l5.5-5.5c0.8-0.8,0.8-2,0-2.8l0,0C24,7.3,23.5,7,23,7c-0.5,0-1,0.2-1.4,0.6L16,13.2l-5.5-5.5  c-0.8-0.8-2.1-0.8-2.8,0C7.3,8,7,8.5,7,9.1s0.2,1,0.6,1.4l5.5,5.5l-5.5,5.5C7.3,21.9,7,22.4,7,23c0,0.5,0.2,1,0.6,1.4  C8,24.8,8.5,25,9,25c0.5,0,1-0.2,1.4-0.6l5.5-5.5l5.5,5.5c0.8,0.8,2.1,0.8,2.8,0c0.8-0.8,0.8-2.1,0-2.8L18.8,16z" />
+        </svg>
+    </div>
+    <div class="buttons">
+        <p class="underline-anim">Home</p>
+        <p class="underline-anim">Shop</p>
+        <p class="underline-anim">About</p>
+        <p class="underline-anim">Contact</p>
+    </div>
+</div>
+}
+}
