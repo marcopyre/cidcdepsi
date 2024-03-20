@@ -2,11 +2,10 @@ import {
   GoogleSigninButtonModule,
   SocialUser,
 } from '@abacritt/angularx-social-login';
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
