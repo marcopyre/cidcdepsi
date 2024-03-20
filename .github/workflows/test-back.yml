@@ -32,6 +32,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Moove
+        run: cd back
+
       - name: Install Yarn
         run: npm install -g yarn
 
