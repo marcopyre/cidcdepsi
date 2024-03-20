@@ -1,0 +1,72 @@
+name: Continuous Integration Testing
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+      - 'main'
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+        test:
+          [
+            complex-sample,
+            cqrs-sample,
+            graphql-sample,
+            http-sample,
+            microservice-sample,
+            mongo-sample,
+            render-sample,
+            rxjs-sample,
+            sequelize-sample,
+            simple-sample,
+            typeorm-sample,
+            prisma-sample,
+            websocket-sample,
+          ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 8
+          run_install: true
+      - name: Generate Prisma Schema
+        if: ${{ matrix.test == 'prisma-sample' }}
+        run: pnpx prisma generate --schema apps/prisma-sample/prisma/schema.prisma
+      - name: pnpm test
+        run: pnpm nx test ${{ matrix.test }}
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    needs: [unit-tests]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Start Docker-Compose
+        run: docker-compose up -d
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 8
+          run_install: true
+      - name: Run tests
+        run: pnpm run test:e2e
+      - name: Stop Docker-Compose
+        run: docker-compose down
