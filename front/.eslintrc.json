@@ -15,6 +15,14 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@angular-eslint/template/click-events-have-key-events": "off",
+        "@angular-eslint/template/interactive-supports-focus": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-console": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -42,14 +50,6 @@
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {
-        "@typescript-eslint/interface-name-prefix": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@angular-eslint/template/click-events-have-key-events": "off",
-        "@angular-eslint/template/interactive-supports-focus": "off",
-        "@typescript-eslint/no-unused-vars": "off",
-        "no-console": "off"
       }
     }
   ]
