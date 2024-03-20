@@ -69,6 +69,7 @@ export class HomePageComponent {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFileChange(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
