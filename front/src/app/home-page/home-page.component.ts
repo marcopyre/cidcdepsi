@@ -24,6 +24,8 @@ export class HomePageComponent implements OnInit {
     quantity: new FormControl('', [Validators.required]),
   });
 
+  groups: Product[] = [];
+
   constructor(
     private authService: AuthService,
     private productService: ProductService
@@ -34,6 +36,10 @@ export class HomePageComponent implements OnInit {
     if (token) {
       this.authService.isAdmin(token);
     }
+
+    this.productService.getAllProducts().subscribe((products) => {
+      this.groups = products;
+    });
   }
 
   addProduct() {

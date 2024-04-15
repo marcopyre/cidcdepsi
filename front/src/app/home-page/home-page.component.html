@@ -13,12 +13,21 @@
                 <input formControlName="quantity" placeholder="Quantity of users in the group">
                 <label for="Price" class="Input-label text-primary-950 ml-4">Max users</label>
             </div>
-            <div (click)="addProduct()" class="px-5 py-2  flex w-fit rounded-lg border-[1px] mt-5 shadow-lg">
-                <p class="my-auto">Add Product</p>
+            <div (click)="addProduct()" class="bg-primary-700 px-5 py-2 cursor-pointer flex w-fit rounded-lg border-[1px] mt-5 shadow-lg">
+                <p class="my-auto">Add group</p>
                 <p class="font-extrabold ml-2 text-[1.5rem]">+</p>
             </div>
         </form>
     </div>
     <div class="w-min-[1px] w-max-[1px] w-[1px] bg-primary-950 h-full mt-5"></div>
-    <div class="w-[49.5%] h-full"></div>
+    <div class="w-[49.5%] h-full pt-24 text-primary-950">
+        @for(group of groups; track group){
+            <div class="mb-8 w-[400px] px-10 py-5 bg-primary-600 rounded-md">
+                <div class="flex">
+                    <div>groupe {{$index + 1}}: {{group.name}}</div>
+                    <div class="ml-auto">max: {{group.max}}</div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
