@@ -6,45 +6,14 @@
     <div class="w-[49.5%] h-full pl-16 pr-16 text-primary-950 pt-10">
         <form [formGroup]="productForm">
             <div class="Input mt-10 h-[70px]">
-                <input [ngClass]="{'border-warning-700': !productForm.controls.name.valid && productForm.controls.name.dirty}" type="text" id="Name" class="Input-text p-1 border-[1px]" formControlName="name" placeholder="Name of the product">
+                <input type="text" id="Name" class="Input-text p-1 mr-4" formControlName="name" placeholder="Name of the group">
                 <label for="Name" class="Input-label text-primary-950">Name</label>
-                @if(!productForm.controls.name.valid && productForm.controls.name.dirty){
-                    <p class="text-warning-700">Name can't be empty</p>
-                }
-            </div>
-            <div class="Input h-[190px]">
-                <textarea id="Description" class="w-full h-[10rem] Input-text mt-10 p-1 border-[1px] " formControlName="description" placeholder="Description"></textarea>
-                <label for="Description" class="Input-label text-primary-950 textarea">Description</label>
             </div>
             <div class="Input h-[80px]">
-                <input [ngClass]="{'border-warning-700': !productForm.controls.price.valid && productForm.controls.price.dirty}" type="number" id="Price" class="Input-text p-1 border-[1px] max-w-[12rem]" formControlName="price" placeholder="Price of the product">
-                <label [ngClass]="{'text-warning-700': !productForm.controls.price.valid && productForm.controls.price.dirty}" for="Price" class="Input-label text-primary-950">Price</label>
-                @if(!productForm.controls.price.valid && productForm.controls.price.dirty){
-                    <p class="text-warning-700">Price must be numeric and separated by a dot (.)</p>
-                }
+                <input formControlName="quantity" placeholder="Quantity of users in the group">
+                <label for="Price" class="Input-label text-primary-950 ml-4">Max users</label>
             </div>
-            <div class="Input h-[80px]">
-                <input [ngClass]="{'border-warning-700': !productForm.controls.quantity.valid && productForm.controls.quantity.dirty}" type="number" id="Price" class="Input-text p-1 border-[1px] max-w-[12rem]" formControlName="quantity" placeholder="Quantity of the product">
-                <label [ngClass]="{'text-warning-700': !productForm.controls.quantity.valid && productForm.controls.quantity.dirty}" for="Price" class="Input-label text-primary-950">Quantity</label>
-                @if(!productForm.controls.quantity.valid && productForm.controls.quantity.dirty){
-                    <p class="text-warning-700" >Quantity must be numeric</p>
-                }
-            </div>
-            <div>
-                <input class="mb-4" type="file" (change)="onFileChange($event)" accept="image/*">
-                <div class="flex overflow-x-auto max-w-[630px]">
-                @for(picture of pictures; track picture) {
-                    <div [ngClass]="{'mr-5': $index !== pictures.length - 1}" class="relative min-w-[225px] mb-2">
-                        <img class="object-cover rounded h-[175px] w-[225px]" [src]="picture"/>
-                        <div class="cross" (click)="removePicture(picture)">
-                            <div class="round"></div>
-                            <div class="absolute top-[1.75px] right-[6px] text-primary-50 cursor-pointer font-bold text-[0.7rem]">X</div>
-                        </div>
-                    </div>
-                }
-                </div>
-            </div>
-            <div (click)="addProduct()" [ngClass]="{ 'bg-primary-900 cursor-not-allowed opacity-80': !productForm.valid, 'bg-primary-500 cursor-pointer': productForm.valid}" class="px-5 py-2  flex w-fit rounded-lg border-[1px] mt-5 shadow-lg">
+            <div (click)="addProduct()" class="px-5 py-2  flex w-fit rounded-lg border-[1px] mt-5 shadow-lg">
                 <p class="my-auto">Add Product</p>
                 <p class="font-extrabold ml-2 text-[1.5rem]">+</p>
             </div>
