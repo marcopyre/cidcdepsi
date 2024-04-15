@@ -6,7 +6,10 @@ export class User {
   id: number;
 
   @Column({ nullable: false, unique: true })
-  Oauth: string;
+  email: string;
+
+  @Column({ nullable: false })
+  password: string;
 
   @Column('boolean', { default: false })
   isAdmin: boolean = false;

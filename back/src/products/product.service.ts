@@ -28,12 +28,8 @@ export class ProductService {
     return this.productRepository.save(updatedProduct);
   }
 
-  async getAllProducts(): Promise<Product[]> {
+  async getAllPolls(): Promise<Product[]> {
     return this.productRepository.find();
-  }
-
-  async getProduct(id: number): Promise<Product> {
-    return this.productRepository.findOneBy({ id });
   }
 
   async deleteProduct(id: number) {

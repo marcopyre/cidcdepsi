@@ -1,5 +1,6 @@
 export type Product = {
   name: string;
-  quantity: number;
+  max: number;
+  membres: string[];
   id?: number;
 };

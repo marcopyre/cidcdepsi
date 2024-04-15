@@ -24,8 +24,6 @@ export class HomePageComponent implements OnInit {
     quantity: new FormControl('', [Validators.required]),
   });
 
-  pictures: string[] = [];
-
   constructor(
     private authService: AuthService,
     private productService: ProductService
@@ -46,19 +44,13 @@ export class HomePageComponent implements OnInit {
       ) {
         const product: Product = {
           name: this.productForm.controls.name.value,
-          quantity: Number(this.productForm.controls.quantity.value),
+          max: Number(this.productForm.controls.quantity.value),
+          membres: [],
         };
         this.productService.addProduct(product).subscribe(() => {
-          this.productForm.reset();
-          this.pictures = [];
+          location.reload;
         });
       }
     }
-  }
-
-  removePicture(picture: string) {
-    this.pictures = this.pictures.filter(
-      (pictureFromArray) => pictureFromArray !== picture
-    );
   }
 }

@@ -1,19 +1,31 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { json, urlencoded } from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 async function bootstrap() {
+  const fs = require('fs');
+
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: 'http://localhost:4200',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
-  
-  app.use(json({ limit: '50mb' }));
-  app.use(urlencoded({ extended: true, limit: '50mb' }));
 
-  await app.listen(3000);
+  var bodyParser = require('body-parser');
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(
+    bodyParser.urlencoded({
+      limit: '50mb',
+      extended: true,
+      parameterLimit: 50000,
+    }),
+  );
+
+  app.setGlobalPrefix('api');
+
+  await app.listen(3001);
 }
 bootstrap();

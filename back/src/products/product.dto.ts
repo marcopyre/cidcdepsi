@@ -1,5 +1,5 @@
 export class ProductDto {
   name: string;
-  number: number;
-  groupe: string[];
+  max: number;
+  membres: string[];
 }

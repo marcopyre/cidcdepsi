@@ -1,16 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class Product {
+export class Post {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  content: string;
 
   @Column()
-  max: number;
+  ip: string;
 
-  @Column({ type: 'text', array: true })
-  membres: string[];
+  @Column()
+  postTime: Date;
 }
