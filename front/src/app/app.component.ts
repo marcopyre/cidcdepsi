@@ -25,12 +25,6 @@ export class AppComponent {
     if (isUnderAge) {
       this.ageCheck = false;
     }
-
-    const jwt = localStorage.getItem('authorization');
-
-    if (jwt && this.isTokenExpired(jwt)) {
-      localStorage.removeItem('authorization');
-    }
   }
 
   @HostListener('window:resize', ['$event'])
