@@ -37,10 +37,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Yarn
-        run: npm install -g yarn
+        run: npm i @angular/cli --save
 
-      - name: Install dependencies
-        run: yarn install
+      - name: Install Yarn
+        run: npm i
 
       - name: Lint code
         run: yarn lint
