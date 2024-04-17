@@ -7,9 +7,6 @@ import { User } from './users/users.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';
-import { PostService } from './post/post.service';
-import { PostController } from './post/post.controller';
-import { Post } from './post/post.entity';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -22,13 +19,13 @@ dotenv.config();
       username: process.env.DBUSER,
       password: process.env.DBPASS,
       database: process.env.DBNAME,
-      entities: [Product, User, Post],
+      entities: [Product, User],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Product, User, Post]),
+    TypeOrmModule.forFeature([Product, User]),
     AuthModule,
   ],
-  providers: [ProductService, UsersService, PostService],
-  controllers: [ProductController, AppController, PostController],
+  providers: [ProductService, UsersService],
+  controllers: [ProductController, AppController],
 })
 export class AppModule {}
