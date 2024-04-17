@@ -1,0 +1,18 @@
+<app-nav-bar></app-nav-bar>
+<div class="bg-primary-800 relative z-[20] w-[25rem] h-[20rem] left-[50%] top-[35%] rounded-2xl ml-[-12.5rem] mt-[-15rem] shadow-2xl">
+    <div class="container p-10" style="max-width: 550px">
+      <form [formGroup]="productForm">
+        <div class="Input mt-10 h-[70px]">
+            <input type="text" id="Name" class="Input-text p-1 mr-4 text-primary-950" formControlName="username" placeholder="username">
+            <label for="Name" class="Input-label text-primary-950">username</label>
+        </div>
+        <div class="Input h-[80px]">
+            <input formControlName="password" class="Input-text p-1 text-primary-950" placeholder="password">
+            <label for="Price" class="Input-label text-primary-950 ml-4">password</label>
+        </div>
+        <div (click)="login()" class="bg-primary-700 px-5 py-2 cursor-pointer flex w-fit rounded-lg border-[1px] mt-5 shadow-lg">
+            <p class="my-auto">login</p>
+        </div>
+    </form>
+    </div>
+</div>

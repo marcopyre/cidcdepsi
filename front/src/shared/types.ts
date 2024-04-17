@@ -4,3 +4,8 @@ export type Product = {
   membres: string[];
   id?: number;
 };
+
+export type User = {
+  username: string;
+  password: string;
+};

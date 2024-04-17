@@ -5,7 +5,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'login/succes/:id', component: LoginPageComponent },
+  { path: 'login', component: LoginPageComponent },
 ];
 
 @NgModule({

@@ -37,15 +37,6 @@ export class NavBarComponent {
     if (researchValue) {
       this.searchControl.setValue(researchValue);
     }
-
-    const token = localStorage.getItem('authorization');
-    if (token) {
-      this._authService.isAdminObservable(token).subscribe((response) => {
-        this.isAdmin = response.message === 'user id admin';
-      });
-    }
-
-    this.fetchCart();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -66,7 +57,7 @@ export class NavBarComponent {
   }
 
   login() {
-    window.location.href = 'http://localhost:3000/auth/google';
+    this._router.navigate(['/login']);
   }
 
   logout() {
@@ -82,14 +73,5 @@ export class NavBarComponent {
           window.location.reload();
         }
       });
-  }
-
-  fetchCart() {
-    const cart = localStorage.getItem('cart');
-    let cartContent: { quantity: number; id: number }[] = [];
-    if (cart) {
-      cartContent = JSON.parse(cart);
-      this.cartSize = cartContent.length;
-    }
   }
 }

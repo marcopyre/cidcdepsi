@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
+import { User } from '../types';
 import { AuthApiService } from './auth.api.service';
-import { Observable, firstValueFrom, timeout } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly _authApiService: AuthApiService) {}
-  
-  async isAdmin(token: string) {
-    return await firstValueFrom(
-      this._authApiService.isAdmin(token).pipe(timeout(10000))
-    );
-  }
+  constructor(
+    private readonly _authApiService: AuthApiService,
+    private readonly _router: Router
+  ) {}
 
-  isAdminObservable(token: string): Observable<any> {
-    return this._authApiService.isAdmin(token)
+  authenticate(user: User) {
+    return this._authApiService.authenticate(user).subscribe((token) => {
+      localStorage.setItem('authorization', token.access_token);
+      this._router.navigate(['/']);
+    });
   }
 }

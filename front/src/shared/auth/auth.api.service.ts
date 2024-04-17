@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,10 @@ export class AuthApiService {
 
   constructor(private http: HttpClient) {}
 
-  isAdmin(token: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/auth/isAdmin`, {
+  authenticate(user: User): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
       }),
     });
   }

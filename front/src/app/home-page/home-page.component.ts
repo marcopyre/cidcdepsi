@@ -8,7 +8,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../shared/auth/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -26,20 +25,18 @@ export class HomePageComponent implements OnInit {
 
   groups: Product[] = [];
 
-  constructor(
-    private authService: AuthService,
-    private productService: ProductService
-  ) {}
+  isAdmin = false;
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    const token = localStorage.getItem('authorization');
-    if (token) {
-      this.authService.isAdmin(token);
-    }
-
     this.productService.getAllProducts().subscribe((products) => {
       this.groups = products;
     });
+
+    if (localStorage.getItem('authorization')) {
+      this.isAdmin = true;
+    }
   }
 
   addProduct() {
@@ -58,5 +55,33 @@ export class HomePageComponent implements OnInit {
         });
       }
     }
+  }
+
+  apply(event: string, group: Product) {
+    if (group.max > group.membres.length) {
+      group.membres = group.membres.concat(event);
+      if (group.id) {
+        this.productService.updateProduct(group).subscribe(() => {
+          location.reload;
+        });
+      }
+    }
+  }
+
+  deleteUserFromGroup(event: string, group: Product) {
+    if (group.max > group.membres.length) {
+      group.membres = group.membres.filter((membre) => membre !== event);
+      if (group.id) {
+        this.productService.updateProduct(group).subscribe(() => {
+          location.reload;
+        });
+      }
+    }
+  }
+
+  deleteGroup(group: Product) {
+    this.productService.deleteProduct(group).subscribe(() => {
+      location.reload;
+    });
   }
 }

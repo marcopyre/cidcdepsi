@@ -1,23 +1,35 @@
 import { Component } from '@angular/core';
 import { NavBarComponent } from '../../shared/modules/nav-bar/nav-bar.component';
-import { FormsModule } from '@angular/forms';
-import { GoogleSigninButtonModule, SocialLoginModule } from '@abacritt/angularx-social-login';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../../shared/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [NavBarComponent, FormsModule, SocialLoginModule, GoogleSigninButtonModule ],
+  imports: [NavBarComponent, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
-  constructor(private route: ActivatedRoute, private router: Router) { }
-  
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      localStorage.setItem('authorization', params['id']);
-      this.router.navigate([''])
-   });
+  productForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
+
+  constructor(private authService: AuthService) {}
+
+  login(): void {
+    this.authService.authenticate({
+      username: this.productForm.controls.username.value!,
+      password: this.productForm.controls.password.value!,
+    });
   }
 }
