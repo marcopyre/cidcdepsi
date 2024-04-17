@@ -1,0 +1,55 @@
+<!-- eslint-disable @angular-eslint/template/alt-text -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<app-nav-bar></app-nav-bar>
+<div class="w-full flex container">
+    @if(isAdmin){
+        <div class="w-[49.5%] h-full pl-16 pr-16 text-primary-950 pt-10">
+            <form [formGroup]="productForm">
+                <div class="Input mt-10 h-[70px]">
+                    <input type="text" id="Name" class="Input-text p-1 mr-4" formControlName="name" placeholder="Name of the group">
+                    <label for="Name" class="Input-label text-primary-950">Name</label>
+                </div>
+                <div class="Input h-[80px]">
+                    <input formControlName="quantity" placeholder="Quantity of users in the group">
+                    <label for="Price" class="Input-label text-primary-950 ml-4">Max users</label>
+                </div>
+                <div (click)="addProduct()" class="bg-primary-700 px-5 py-2 cursor-pointer flex w-fit rounded-lg border-[1px] mt-5 shadow-lg">
+                    <p class="my-auto">Add group</p>
+                    <p class="font-extrabold ml-2 text-[1.5rem]">+</p>
+                </div>
+            </form>
+        </div>
+    }
+    <div [ngClass]="{ 'w-[49.5%]': isAdmin, 'mx-auto': !isAdmin }" class=" h-full pt-24 text-primary-950">
+        @for(group of groups; track group){
+            <div class="mb-8 w-[400px] px-10 py-5 bg-primary-600 rounded-md relative">
+                <div class="flex">
+                    <div>groupe {{$index + 1}}: {{group.name}}</div>
+                    <div class="ml-auto">max: {{group.max}}</div>
+                </div>
+                <div class="Input">
+                    <input (keyup.enter)="apply(adress.value, group)" #adress  placeholder="apply to group">
+                </div>
+                @if(isAdmin){
+                    <div (click)="deleteGroup(group)" class="rounded-full bg-warning-700 text-primary-950 px-[0.6rem] py-[0.25rem] w-fit absolute bottom-2 right-2 cursor-pointer">
+                        X
+                    </div>
+                }
+                @for(membre of group.membres; track membre){
+                    <div class="flex">
+                        @if(isAdmin){
+                            <div (click)="deleteUserFromGroup(membre, group)" class="rounded-full bg-warning-700 text-primary-950 px-[0.6rem] py-[0.25rem] w-fit h-fit mt-2 mr-2 cursor-pointer">
+                                X
+                            </div>
+                        }
+                        <div class="mt-4">
+                            {{membre}}
+                        </div>
+                    </div>
+                   
+                }
+            </div>
+        }
+    </div>
+</div>
