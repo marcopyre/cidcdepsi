@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -17,11 +19,11 @@ describe('ProductService', () => {
       imports: [
         TypeOrmModule.forRoot({
           type: 'postgres',
-          host: 'localhost',
+          host: process.env.DBHOST,
           port: 5432,
-          username: 'postgres',
-          password: 'root',
-          database: 'test',
+          username: process.env.DBUSER,
+          password: process.env.DBPASS,
+          database: process.env.DBNAME,
           entities: [Product],
           synchronize: true,
           dropSchema: true,

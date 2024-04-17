@@ -51,6 +51,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      
+      - name: Rename .env.test
+        run: cp .env.test .env
 
       - name: Install Yarn
         run: npm install -g yarn
