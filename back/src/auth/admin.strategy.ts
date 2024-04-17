@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../users/users.service';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -19,8 +19,8 @@ export class AdminStrategy extends PassportStrategy(Strategy, 'isAdmin') {
   }
 
   async validate(payload: JwtPayload) {
-    const user = await this.usersService.findOne(payload.username)
-    
+    const user = await this.usersService.findOne(payload.username);
+
     if (!user || user.isAdmin !== true) {
       throw new UnauthorizedException();
     }
