@@ -36,14 +36,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Yarn
-        run: npm install -g yarn
+      - name: Install angular
+        run: npm install -g @angular/cli@latest
 
       - name: Install dependencies
-        run: yarn install
+        run: npm i
 
       - name: Run tests
-        run: yarn test
+        run: ng test --browsers=ChromeHeadless --watch=false
       # - name: SonarCloud Scan
       #   uses: sonarsource/sonarcloud-github-action@master
       #   env:

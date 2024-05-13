@@ -69,13 +69,11 @@ export class HomePageComponent implements OnInit {
   }
 
   deleteUserFromGroup(event: string, group: Product) {
-    if (group.max > group.membres.length) {
-      group.membres = group.membres.filter((membre) => membre !== event);
-      if (group.id) {
-        this.productService.updateProduct(group).subscribe(() => {
-          location.reload;
-        });
-      }
+    group.membres = group.membres.filter((membre) => membre !== event);
+    if (group.id) {
+      this.productService.updateProduct(group).subscribe(() => {
+        location.reload;
+      });
     }
   }
 

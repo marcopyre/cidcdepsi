@@ -17,15 +17,7 @@ export const appConfig: ApplicationConfig = {
           provider: new GoogleLoginProvider(
             '31830734060-cp6lupkklp125r0d495ct1eha7lhf124.apps.googleusercontent.com',
             {
-              oneTapEnabled:false, 
-              prompt:'consent'
-            }
-          )
-        }
-      ],
-      onError: (err: any) => {
-        console.error(err);
-      }
+
     } as SocialAuthServiceConfig,
   }
 ],
