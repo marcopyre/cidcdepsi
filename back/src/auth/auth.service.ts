@@ -14,7 +14,7 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = {
-      id: 1,
+      id: 2,
       email: 'admin',
       password: '$2a$12$luzYYgcdCKsBftPfrTwnKuYBk1c8Kkrvi0nojbX9POWJourMPzbzq',
       isAdmin: true,
